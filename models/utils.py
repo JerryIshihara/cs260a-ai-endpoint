@@ -1,9 +1,14 @@
+import os
 import logging
 import boto3
 from botocore.exceptions import ClientError
+from dotenv import load_dotenv
 
-BUCKET_NAME = "test-badminton-video-upload"
-REGION = "us-west-1"
+
+load_dotenv()
+BUCKET_NAME = os.getenv("BUCKET_NAME")
+REGION = os.getenv("REGION")
+
 
 def get_s3_presigned_url(key):
     s3_client = boto3.client('s3', region_name=REGION)
